@@ -1,0 +1,109 @@
+#!/bin/sh
+
+CONFIG=$(dirname $0)/.cloudflare
+
+if [ -r $CONFIG ]; then
+	. $CONFIG
+else
+	( >&2 echo "Missing or unreadable $CONFIG" )
+fi
+
+# script settings
+LOGFILE=$(basename $0).log
+THROTTLE_SECONDS=300  # terminate prematurely if run too often
+
+# user input IP address
+NEW_IP=$1
+
+log_output()
+{
+	timestamp=$(date +"%Y-%m-%d %H:%M")
+	echo "$timestamp	$1	$OUTPUT"
+} >> $LOGFILE
+
+list_dns_records()
+{
+	OUTPUT=$(curl -s -X GET "https://api.cloudflare.com/client/v4/zones/$DNS_ZONE_ID/dns_records" \
+		-H "X-Auth-Email: $CLOUDFLARE_EMAIL" \
+		-H "X-Auth-Key: $CLOUDFLARE_API_KEY")
+}
+
+list_dns_records_onsuccess()
+{
+	log_output LIST_SUCCESS
+}
+
+list_dns_records_onfailure()
+{
+	log_output LIST_FAILED
+}
+
+list_dns_records_onthrottled()
+{
+	log_output LIST_THROTTLED
+}
+
+update_record()
+{
+	OUTPUT=$(curl -s -X PUT "https://api.cloudflare.com/client/v4/zones/$DNS_ZONE_ID/dns_records/$DNS_RECORD_ID" \
+		-H "X-Auth-Email: $CLOUDFLARE_EMAIL" \
+		-H "X-Auth-Key: $CLOUDFLARE_API_KEY" \
+		-H "Content-Type: application/json" \
+		--data "{\"type\":\"$DNS_RECORD_TYPE\",\"name\":\"$DNS_RECORD_NAME\",\"content\":\"$NEW_IP\"}")
+}
+
+update_record_onsuccess()
+{
+	/sbin/ddns_custom_updated 1
+	log_output UPDATE_SUCCESS
+} 
+
+update_record_onfailure()
+{
+	/sbin/ddns_custom_updated 0
+	log_output UPDATE_FAILED
+}
+
+update_record_onthrottled()
+{
+	/sbin/ddns_custom_updated 0
+	log_output UPDATE_THROTTLED
+}
+
+throttle()
+{
+	# if we can't read the log file, assume it's a first run
+	if [ ! -r $LOGFILE ]; then
+		return
+	fi
+
+	last_run_time=$(date -d "$(sort -r $LOGFILE | grep -vm1 THROTTLED | cut -f 1)" +%s)
+	current_time=$(date +%s)
+	if [ $(expr $last_run_time + $THROTTLE_SECONDS) -gt $current_time ]; then
+		$throttled
+		exit 1
+	fi
+}
+
+command=update_record
+success=update_record_onsuccess
+failure=update_record_onfailure
+throttled=update_record_onthrottled
+
+# if argument is the word 'list', query for a listing of all zone records
+if [ "$NEW_IP" = "list" ]; then
+	command=list_dns_records
+	success=list_dns_records_onsuccess
+	failure=list_dns_records_onfailure
+	throttled=list_dns_records_onthrottled
+fi
+
+throttle
+
+$command
+
+if echo $OUTPUT | grep -q '"success":true'; then
+	$success
+else
+	$failure
+fi

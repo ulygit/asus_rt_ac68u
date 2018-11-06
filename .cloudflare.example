@@ -1,0 +1,26 @@
+# The Cloudlflare credentials (i.e. email, api key and zone id) can be 
+# obtained from your Cloudflare account online. The record information
+# (i.e. id, name, type) can be obtained by first specifying the 
+# Cloudflare credentials and zone id here and then running 
+# 'cloudflare_ddns list'. This will query your Cloudflare account and download 
+# record information for the specified zone into a log file in the directory 
+# the script is executed from.
+#
+# KNOWN ISSUE: Zones with a large number of records may not download
+# completely because Cloudflare paginates the results but the cloudflare_ddns 
+# script doesn't support pagination. You will have to manually query if this
+# becomes a problem. It may also be possible to obtain record information 
+# directly from the web portal, but it wasn't obvious to me where.
+
+# account credentials
+CLOUDFLARE_EMAIL='<your cloudflare account email>'
+CLOUDFLARE_API_KEY='<your cloudflare account api key>'
+
+# zone information
+DNS_ZONE_ID='<the id for the zone that contains your target dns record>'
+
+# record information
+DNS_RECORD_ID='<the id for the target dns record>'
+DNS_RECORD_NAME='<the domain name to be changed>'
+DNS_RECORD_TYPE='A'
+
