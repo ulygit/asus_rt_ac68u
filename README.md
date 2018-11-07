@@ -15,11 +15,11 @@ You should have your Merlin-enabled ASUS RT-AC68U router configured for your net
 
 ### Configuration Overview
 Configuration of Cloudflare DDNS involves changes made on the router web portal as well as changes made on the router shell.
-1. Enable shell access and JFFS partition
-2. Install Cloudflare DDNS script
-3. Enable custom DDNS
-4. Verification
-5. Clean up
+1. [Enable shell access and JFFS partition](#enable-shell-access-and-jffs-partition)
+2. [Install Cloudflare DDNS script](#install-cloudflare-ddns-script)
+3. [Enable custom DDNS](#enable-custom-ddns)
+4. [Verification](#verification)
+5. [Clean up](#clean-up)
 
 ##### Enable Shell Access and JFFS Partition
 In the router portal, under Administration -> System,
@@ -57,11 +57,17 @@ Save the configuration.
 
 ##### Verification
 If all is configured correctly, you should see:
-1. A 'successful' message on the router portal after saving the configuration. I believe this is determined by the `/sbin/ddns_custom_updated` commands being called properly within the `cloudflare_ddns` script.
-2. A new log file should have been created in a /tmp folder and it should contain a successful log entry. Find the log file by running `find / -name ddns-start.log 2>&1`.
-3. The Cloudflare portal should reflect the updated public IP address of your router.
+1. A "successful" message on the router portal on saving the configuration. I believe this is determined by the `/sbin/ddns_custom_updated` commands being called properly within the `cloudflare_ddns` script.
+2. In the router portal, under System Log, you should see an entries as below.
+```
+Nov  5 06:57:14 start_ddns: update CUSTOM , wan_unit 0
+Nov  5 06:57:14 custom_script: Running /jffs/scripts/ddns-start (args: 73.57.185.52 ) - max timeout = 120s
+Nov  5 06:57:16 ddns: Completed custom ddns update
+```
+3. A new log file for the script should have been created in a /tmp folder and it should contain a successful log entry. Find the log file by running `find / -name ddns-start.log 2>&1`.
+4. The Cloudflare portal should reflect the updated public IP address of your router.
 
-> Note: If any errors occur, review the log file for an indication of the error or manually re-run `./cloudflare_ddns list` and `./cloudflare_ddns 1.1.1.1` to identify and troubleshoot.
+> Note: If any errors occur, review the router log file and the script log file for an indication of the error or manually re-run `./cloudflare_ddns list` and `./cloudflare_ddns 1.1.1.1` to identify and troubleshoot.
 
 ##### Clean Up
 Once everything is configured and working properly, you may delete the `cloudflare_ddns.log` file from the `/jffs/scripts/` directory on the router. If SSH access is no longer needed, disable SSH on the router portal for security (especially if password authentication was used).
