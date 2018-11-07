@@ -58,7 +58,7 @@ Save the configuration.
 ##### Verification
 If all is configured correctly, you should see:
 1. A "successful" message on the router portal on saving the configuration. I believe this is determined by the `/sbin/ddns_custom_updated` commands being called properly within the `cloudflare_ddns` script.
-2. In the router portal, under System Log, you should see an entries as below.
+2. In the router portal, under System Log, you should see entries as below.
 ```
 Nov  5 06:57:14 start_ddns: update CUSTOM , wan_unit 0
 Nov  5 06:57:14 custom_script: Running /jffs/scripts/ddns-start (args: 73.57.185.52 ) - max timeout = 120s
