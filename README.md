@@ -61,7 +61,7 @@ If all is configured correctly, you should see:
 2. In the router portal, under System Log, you should see entries as below.
 ```
 Nov  5 06:57:14 start_ddns: update CUSTOM , wan_unit 0
-Nov  5 06:57:14 custom_script: Running /jffs/scripts/ddns-start (args: 73.57.185.52 ) - max timeout = 120s
+Nov  5 06:57:14 custom_script: Running /jffs/scripts/ddns-start (args: x.x.x.x ) - max timeout = 120s
 Nov  5 06:57:16 ddns: Completed custom ddns update
 ```
 3. A new log file for the script should have been created in a /tmp folder and it should contain a successful log entry. Find the log file by running `find / -name ddns-start.log 2>&1`.
