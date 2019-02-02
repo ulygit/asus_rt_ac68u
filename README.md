@@ -50,7 +50,7 @@ Save the configuration. Ensure you are able to SSH into your router using your r
 In the router portal, under WAN -> DDNS,
 - Enable DDNS client: Yes
 - Server: Custom
-- Host name: <the DNS host name your using in Cloudflare>
+- Host name: `the DNS host name you're using in Cloudflare`
 - HTTPS/SSL Certificate: None
 
 Save the configuration.
