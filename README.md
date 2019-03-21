@@ -72,3 +72,7 @@ Nov  5 06:57:16 ddns: Completed custom ddns update
 ##### Clean Up
 Once everything is configured and working properly, you may delete the `cloudflare_ddns.log` file from the `/jffs/scripts/` directory on the router. If SSH access is no longer needed, disable SSH on the router portal for security (especially if password authentication was used).
 
+## Script Removal
+To remove the script, the process is essentially reversed.
+1. In the router portal, disable DDNS client and save. It may be worthwhile to restart your router to ensure any in-memory settings are cleared.
+2. Log into the router via SSH and delete (in order): a) ddns-start, b) cloudflare_ddns, c) .cloudflare, d) cloudflare_ddns.log, and e) ddns-start.log.
