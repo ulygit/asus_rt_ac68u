@@ -1,6 +1,6 @@
-# Cloudflare Dynamic DNS Update Script for ASUS RT-AC68U
+# Cloudflare Dynamic DNS Update Script for ASUS RT-AC68U (related routers may also work)
 
-The ASUS RT-AC68U router with the Asuswrt-Merlin custom firmware adds support for custom dynamic DNS providers. This is great for Cloudflare users because, although Cloudflare is not one of the built-in providers, we can add support for it. This guide and accompanying script do exactly that.
+The ASUS RT-AC68U router with the Asuswrt-Merlin custom firmware adds support for custom dynamic DNS providers. This is great for Cloudflare users because, although Cloudflare is not one of the built-in providers, we can add support for it. This guide and accompanying script do exactly that. It's been reported that these steps are also applicable for the RT-AC66U model router (thanks to [@epicylon](https://github.com/epicylon)).
 
 Features include:
   - Support for querying your Cloudflare DNS zone to determine record IDs
@@ -14,7 +14,7 @@ Features include:
 You should have your Merlin-enabled ASUS RT-AC68U router configured for your network with Internet access. Since you've found this guide, it's also assumed you have a Cloudflare account managing your own domain, and you've already created a subdomain you will use for dynamic DNS.
 
 ### Configuration Overview
-Configuration of Cloudflare DDNS involves changes made on the router web portal as well as changes made on the router shell.
+Configuration of Cloudflare DDNS involves changes through the router web portal as well as changes made through the router shell.
 1. [Enable shell access and JFFS partition](#enable-shell-access-and-jffs-partition)
 2. [Install Cloudflare DDNS script](#install-cloudflare-ddns-script)
 3. [Enable custom DDNS](#enable-custom-ddns)
@@ -39,7 +39,7 @@ Save the configuration. Ensure you are able to SSH into your router using your r
 6. Run `chmod 600 .cloudflare`.
 7. Run `./cloudflare_ddns list`.
 8. Step 7 should have resulted in the creation of a log file named `cloudflare_ddns.log`. Open the log file and review the JSON response object, which should be a listing of your Cloudflare DNS records for the zone ID specified in Step 4.
-> Note: If there is an error in the log file or no log file is present, ensure permissions are correct and that the text of the script is copied accurately. Double-check your Cloudflare credentials. If the error is from Cloudflare, you can review the text of the error in the JSON response and look any error code online.
+> Note: If there is an error in the log file or no log file is present, ensure permissions are correct and that the text of the script is copied accurately. Double-check your Cloudflare credentials. If the error is from Cloudflare, you can review the text of the error in the JSON response and look for any error code online.
 9. Edit `.cloudflare` with the DNS record information (i.e. ID, name and type) obtained from Step 8. Ensure your text matches exactly.
 10. Run `./cloudflare_ddns 1.1.1.1`.
 11. Review the log file for the result of the last execution. If you see a successful response, verify against the Cloudflare portal. Otherwise, review the errors and correct as necessary.
