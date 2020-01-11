@@ -15,6 +15,8 @@
 # account credentials
 CLOUDFLARE_EMAIL='<your cloudflare account email>'
 CLOUDFLARE_API_KEY='<your cloudflare account api key>'
+CLOUDFLARE_API_TOKEN='<if populated with a TOKEN will be used instead of above.  Keep empty if using standard KEY method.'
+
 
 # zone information
 DNS_ZONE_ID='<the id for the zone that contains your target dns record>'
@@ -23,4 +25,5 @@ DNS_ZONE_ID='<the id for the zone that contains your target dns record>'
 DNS_RECORD_ID='<the id for the target dns record>'
 DNS_RECORD_NAME='<the domain name to be changed>'
 DNS_RECORD_TYPE='A'
+PROXY_STATE='<false|true>'
 
