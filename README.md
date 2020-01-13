@@ -21,6 +21,8 @@ Configuration of Cloudflare DDNS involves changes through the router web portal 
 4. [Verification](#verification)
 5. [Clean up](#clean-up)
 
+Directions for disabling dynamic DNS and removal of the script and related files are at bottom.
+
 ##### Enable Shell Access and JFFS Partition
 In the router portal, under Administration -> System,
 - Basic Config -> Enable JFFS custom scripts and configs: Yes
@@ -60,9 +62,9 @@ If all is configured correctly, you should see:
 1. A "successful" message on the router portal on saving the configuration. I believe this is determined by the `/sbin/ddns_custom_updated` commands being called properly within the `cloudflare_ddns` script.
 2. In the router portal, under System Log, you should see entries as below.
 ```
-Nov  5 06:57:14 start_ddns: update CUSTOM , wan_unit 0
-Nov  5 06:57:14 custom_script: Running /jffs/scripts/ddns-start (args: x.x.x.x ) - max timeout = 120s
-Nov  5 06:57:16 ddns: Completed custom ddns update
+Nov 5 6:57 start_ddns: update CUSTOM , wan_unit 0
+Nov 5 6:57 custom_script: Running /jffs/scripts/ddns-start (args: x.x.x.x ) - max timeout = 120s
+Nov 5 6:57 ddns: Completed custom ddns update
 ```
 3. A new log file for the script should have been created in a /tmp folder and it should contain a successful log entry. Find the log file by running `find / -name ddns-start.log 2>&1`.
 4. The Cloudflare portal should reflect the updated public IP address of your router.
