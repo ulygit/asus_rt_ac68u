@@ -10,7 +10,7 @@ fi
 
 # script settings
 LOGFILE=$(basename $0).log
-THROTTLE_SECONDS=0  # terminate prematurely if run too often
+THROTTLE_SECONDS=300  # terminate prematurely if run too often
 
 # user input IP address
 NEW_IP=$1
