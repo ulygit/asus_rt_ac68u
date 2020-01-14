@@ -11,6 +11,8 @@ fi
 # script settings
 LOGFILE=$(basename $0).log
 THROTTLE_SECONDS=300  # terminate prematurely if run too often
+CLOUDFLARE_AUTH_HEADERS="X-Auth-Email: $CLOUDFLARE_EMAIL
+X-Auth-Key: $CLOUDFLARE_API_KEY"
 
 # user input IP address
 NEW_IP=$1
@@ -18,24 +20,25 @@ NEW_IP=$1
 log_output()
 {
 	timestamp=$(date +"%Y-%m-%d %H:%M")
-	echo "$timestamp	$1	$OUTPUT"
+	echo "$timestamp	$1	$2"
 } >> $LOGFILE
 
 list_dns_records()
 {
-	OUTPUT=$(curl -s -X GET "https://api.cloudflare.com/client/v4/zones/$DNS_ZONE_ID/dns_records" \
-		-H "X-Auth-Email: $CLOUDFLARE_EMAIL" \
-		-H "X-Auth-Key: $CLOUDFLARE_API_KEY")
+	curl -s -X GET "https://api.cloudflare.com/client/v4/zones/$DNS_ZONE_ID/dns_records" \
+		-H @- <<- HEADERS
+			$CLOUDFLARE_AUTH_HEADERS
+		HEADERS
 }
 
 list_dns_records_onsuccess()
 {
-	log_output LIST_SUCCESS
+	log_output LIST_SUCCESS "$1"
 }
 
 list_dns_records_onfailure()
 {
-	log_output LIST_FAILED
+	log_output LIST_FAILED "$1"
 }
 
 list_dns_records_onthrottled()
@@ -45,23 +48,24 @@ list_dns_records_onthrottled()
 
 update_record()
 {
-	OUTPUT=$(curl -s -X PUT "https://api.cloudflare.com/client/v4/zones/$DNS_ZONE_ID/dns_records/$DNS_RECORD_ID" \
-		-H "X-Auth-Email: $CLOUDFLARE_EMAIL" \
-		-H "X-Auth-Key: $CLOUDFLARE_API_KEY" \
-		-H "Content-Type: application/json" \
-		--data "{\"type\":\"$DNS_RECORD_TYPE\",\"name\":\"$DNS_RECORD_NAME\",\"content\":\"$NEW_IP\"}")
+	curl -s -X PUT "https://api.cloudflare.com/client/v4/zones/$DNS_ZONE_ID/dns_records/$DNS_RECORD_ID" \
+		--data "{\"type\":\"$DNS_RECORD_TYPE\",\"name\":\"$DNS_RECORD_NAME\",\"content\":\"$NEW_IP\"}" \
+		-H @- <<- HEADERS
+			$CLOUDFLARE_AUTH_HEADERS
+			Content-Type: application/json
+		HEADERS
 }
 
 update_record_onsuccess()
 {
 	/sbin/ddns_custom_updated 1
-	log_output UPDATE_SUCCESS
+	log_output UPDATE_SUCCESS "$1"
 } 
 
 update_record_onfailure()
 {
 	/sbin/ddns_custom_updated 0
-	log_output UPDATE_FAILED
+	log_output UPDATE_FAILED "$1"
 }
 
 update_record_onthrottled()
@@ -100,10 +104,10 @@ fi
 
 throttle
 
-$command
+OUTPUT=$($command)
 
-if echo $OUTPUT | grep -q '"success":true'; then
-	$success
+if echo $OUTPUT | grep -q '"success"\s*:\s*true'; then
+	$success "$OUTPUT"
 else
-	$failure
+	$failure "$OUTPUT"
 fi
