@@ -19,7 +19,7 @@ NEW_IP=$1
 
 log_output()
 {
-	timestamp=$(date +"%Y-%m-%d %H:%M")
+	timestamp=$(date +"%Y-%m-%d %H:%M:%S")
 	echo "$timestamp	$1	$2"
 } >> $LOGFILE
 
