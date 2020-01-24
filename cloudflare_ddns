@@ -11,13 +11,18 @@ fi
 # script settings
 LOGFILE=$(basename $0).log
 THROTTLE_SECONDS=300  # terminate prematurely if run too often
-CLOUDFLARE_AUTH_HEADERS="X-Auth-Email: $CLOUDFLARE_EMAIL
-X-Auth-Key: $CLOUDFLARE_API_KEY"
 
 # user input IP address
 NEW_IP=$1
 
 # validate .cloudflare config entries
+if [ -n "$CLOUDFLARE_API_TOKEN" ]; then
+        CLOUDFLARE_AUTH_HEADERS="Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+else
+        CLOUDFLARE_AUTH_HEADERS="X-Auth-Email: $CLOUDFLARE_EMAIL
+X-Auth-Key: $CLOUDFLARE_API_KEY"
+fi
+       
 if [ $PROXIED == 1 ]; then
         PROXY_STATE="true"
 else
