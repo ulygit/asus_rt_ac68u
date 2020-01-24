@@ -49,7 +49,7 @@ list_dns_records_onthrottled()
 update_record()
 {
 	curl -s -X PUT "https://api.cloudflare.com/client/v4/zones/$DNS_ZONE_ID/dns_records/$DNS_RECORD_ID" \
-		--data "{\"type\":\"$DNS_RECORD_TYPE\",\"name\":\"$DNS_RECORD_NAME\",\"content\":\"$NEW_IP\",\"TTL\":1}" \
+		--data "{\"type\":\"$DNS_RECORD_TYPE\",\"name\":\"$DNS_RECORD_NAME\",\"content\":\"$NEW_IP\",\"ttl\":1}" \
 		-H @- <<- HEADERS
 			$CLOUDFLARE_AUTH_HEADERS
 			Content-Type: application/json
