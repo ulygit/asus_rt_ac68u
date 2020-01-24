@@ -17,6 +17,13 @@ X-Auth-Key: $CLOUDFLARE_API_KEY"
 # user input IP address
 NEW_IP=$1
 
+# validate .cloudflare config entries
+if [ $PROXIED == 1 ]; then
+        PROXY_STATE="true"
+else
+        PROXY_STATE="false"
+fi
+
 log_output()
 {
 	timestamp=$(date +"%Y-%m-%d %H:%M:%S")
