@@ -15,6 +15,7 @@
 # account credentials
 CLOUDFLARE_EMAIL='<your cloudflare account email>'
 CLOUDFLARE_API_KEY='<your cloudflare account api key>'
+CLOUDFLARE_API_TOKEN='' #Set only this or EMAIL/API_KEY 
 
 # zone information
 DNS_ZONE_ID='<the id for the zone that contains your target dns record>'
