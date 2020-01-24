@@ -36,7 +36,7 @@ Save the configuration. Ensure you are able to SSH into your router using your r
 1. Log into your router via SSH, and navigate to `/jffs/scripts`.
 2. Copy the `cloudflare_ddns` and `.cloudflare.example` files to that directory.
 3. Rename `.cloudflare.example` to `.cloudflare`.
-4. Edit `.cloudflare` with your Cloudflare email, API key, and zone ID from your Cloudflare portal.
+4. Edit `.cloudflare` with your Cloudflare email and API key OR Cloudflare Token, and zone ID from your Cloudflare portal.  Read more about [authentication options](#authentication-options).
 5. Run `chmod 700 cloudflare_ddns`.
 6. Run `chmod 600 .cloudflare`.
 7. Run `./cloudflare_ddns list`.
@@ -79,6 +79,17 @@ Once everything is configured and working properly, you may delete the `cloudfla
 To remove the script, the process is essentially reversed.
 1. In the router portal, disable DDNS client and save. It may be worthwhile to restart your router to ensure any in-memory settings are cleared.
 2. Log into the router via SSH and delete (in order): a) ddns-start, b) cloudflare_ddns, c) .cloudflare, d) cloudflare_ddns.log, and e) ddns-start.log.
+
+## Authentication Options
+The `.cloudflare` configuration files allows for two types of Cloudflare authentication.
+The traditional/older method is to use your e-mail and API Key.  To use this option set the values in the following variables:
+
+```
+CLOUDFLARE_EMAIL='<your cloudflare account email>'
+CLOUDFLARE_API_KEY='<your cloudflare account api key>'
+```
+Leave the `CLOUDFLARE_API_TOKEN` empty unless you prefer to use [this method of authentication](https://support.cloudflare.com/hc/en-us/articles/115001376488-Configuring-Token-Authentication).
+Setting `CLOUDFLARE_API_TOKEN` will override the use of EMAIL/API_KEY and use the TOKEN instead.  However it isn't necessary to set EMAIL/KEY at all if using `CLOUDFLARE_API_TOKEN`.
 
 ## Additional Options
 These options can be set in the `.cloudflare` configuration file for additional control:
