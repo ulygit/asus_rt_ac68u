@@ -30,4 +30,6 @@ DNS_ZONE_ID='<the id for the zone that contains your target dns record>'
 DNS_RECORD_ID='<the id for the target dns record>'
 DNS_RECORD_NAME='<the domain name to be changed>'
 DNS_RECORD_TYPE='A'
+# Determines whether the zone will be proxied by Cloudflare. 
+DNS_RECORD_PROXIED='false'
 
