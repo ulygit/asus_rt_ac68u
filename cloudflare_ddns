@@ -86,7 +86,9 @@ throttle()
 		return
 	fi
 
-	last_run_time=$(date -d "$(sort -r $LOGFILE | grep -vm1 THROTTLED | cut -f 1)" +%s)
+	last_run_time=$(date -d "$(sort -r $LOGFILE | \
+		grep '^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] [0-9][0-9]:[0-9][0-9]' | \
+		grep -vm1 THROTTLED | cut -f 1)" +%s)
 	current_time=$(date +%s)
 	if [ $(expr $last_run_time + $THROTTLE_SECONDS) -gt $current_time ]; then
 		$throttled
