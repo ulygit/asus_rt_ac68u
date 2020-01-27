@@ -36,7 +36,7 @@ Save the configuration. Ensure you are able to SSH into your router using your r
 1. Log into your router via SSH, and navigate to `/jffs/scripts`.
 2. Copy the `cloudflare_ddns` and `.cloudflare.example` files to that directory.
 3. Rename `.cloudflare.example` to `.cloudflare`.
-4. Edit `.cloudflare` with your Cloudflare email, API key, and zone ID from your Cloudflare portal.
+4. Edit `.cloudflare` with your [Cloudflare API token](https://blog.cloudflare.com/api-tokens-general-availability/) and zone ID from your Cloudflare portal. The script also supports the legacy "API Key plus account e-mail" method of authentication, but this method appears likely to be eliminated in future.
 5. Run `chmod 700 cloudflare_ddns`.
 6. Run `chmod 600 .cloudflare`.
 7. Run `./cloudflare_ddns list`.

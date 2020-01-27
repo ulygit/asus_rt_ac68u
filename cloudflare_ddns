@@ -14,6 +14,11 @@ THROTTLE_SECONDS=300  # terminate prematurely if run too often
 CLOUDFLARE_AUTH_HEADERS="X-Auth-Email: $CLOUDFLARE_EMAIL
 X-Auth-Key: $CLOUDFLARE_API_KEY"
 
+# cloudflare prefers token-based auth, so use that if available
+if [ -n $CLOUDFLARE_API_TOKEN ]; then
+	CLOUDFLARE_AUTH_HEADERS="Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+fi
+
 # user input IP address
 NEW_IP=$1
 

@@ -1,4 +1,4 @@
-# The Cloudlflare credentials (i.e. email, api key and zone id) can be 
+# The Cloudlflare credentials (i.e. api token and zone id) can be 
 # obtained from your Cloudflare account online. The record information
 # (i.e. id, name, type) can be obtained by first specifying the 
 # Cloudflare credentials and zone id here and then running 
@@ -13,6 +13,13 @@
 # directly from the web portal, but it wasn't obvious to me where.
 
 # account credentials
+CLOUDFLARE_API_TOKEN='<your cloudflare account api token>'
+
+# DEPRECATION WARNING
+# Cloudflare continues to support auth via email and api key, but 
+# they are encouraging the use of "tokens" for API access. These can be
+# created through your Cloudflare account online. Once created, you can specify
+# your token via the CLOUDFLARE_API_TOKEN setting.
 CLOUDFLARE_EMAIL='<your cloudflare account email>'
 CLOUDFLARE_API_KEY='<your cloudflare account api key>'
 
