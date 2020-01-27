@@ -1,12 +1,18 @@
 # Cloudflare Dynamic DNS Update Script for Asuswrt-Merlin (on ASUS RT-AC68U and related routers)
 
-The ASUS RT-AC68U router with the Asuswrt-Merlin custom firmware adds support for custom dynamic DNS providers. This is great for Cloudflare users because, although Cloudflare is not one of the built-in providers, we can add support for it. This guide and accompanying script do exactly that. It's been reported that these steps are also applicable for the RT-AC66U model router (thanks to [@epicylon](https://github.com/epicylon)).
+The ASUS RT-AC68U router with the Asuswrt-Merlin custom firmware adds support for custom dynamic DNS providers. This is great for Cloudflare users because, although Cloudflare is not one of the built-in providers, we can add support for it. This guide and accompanying script do exactly that. It's been reported that these steps are also applicable for the RT-AC66U model router.
 
 Features include:
   - Support for querying your Cloudflare DNS zone to determine record IDs
   - Handling of Merlin firmware success/failure callbacks
   - Logging of JSON responses for later inspection, and
   - Configurable rate-limiting to comply with Cloudflare API TOS
+
+
+## Contributors
+
+[@epicylon](https://github.com/epicylon) - Verified works on RT-AC66U
+[@bengalih](https://github.com/bengalih) - Several contributions toward support for API Tokens, proxying, and other enhancements.
 
 ## How to Configure
 
