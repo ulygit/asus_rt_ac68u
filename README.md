@@ -11,8 +11,8 @@ Features include:
 
 ## Contributors
 
-[@epicylon](https://github.com/epicylon) - Verified works on RT-AC66U
-[@bengalih](https://github.com/bengalih) - Several contributions toward support for API Tokens, proxying, and other enhancements.
+- [@epicylon](https://github.com/epicylon) - Verified works on RT-AC66U
+- [@bengalih](https://github.com/bengalih) - Several contributions toward support for API Tokens, proxying, and other enhancements.
 
 ## How to Configure
 
