@@ -1,6 +1,6 @@
-# Cloudflare Dynamic DNS Update Script for Asuswrt-Merlin (on ASUS RT-AC68U and related routers)
+# Cloudflare Dynamic DNS Update Script for Asuswrt-Merlin (on supportd ASUS routers)
 
-The ASUS RT-AC68U router with the Asuswrt-Merlin custom firmware adds support for custom dynamic DNS providers. This is great for Cloudflare users because, although Cloudflare is not one of the built-in providers, we can add support for it. This guide and accompanying script do exactly that. It's been reported that these steps are also applicable for the RT-AC66U model router.
+The Asuswrt-Merlin custom firmware adds support for custom dynamic DNS providers to various ASUS routers. This is great for Cloudflare users because, although Cloudflare is not one of the built-in providers, we can add support for it. This guide and accompanying script do exactly that. Confirmed works for the RT-AC68U, RT-AC66U and RT-AX88U model routers.
 
 Features include:
   - Support for querying your Cloudflare DNS zone to determine record IDs
@@ -13,11 +13,12 @@ Features include:
 
 - [@epicylon](https://github.com/epicylon) - Verified works on RT-AC66U
 - [@bengalih](https://github.com/bengalih) - Several contributions toward support for API Tokens, proxying, and other enhancements.
+- [@gumanov](https://github.com/gumanov) - Verified works on RT-AX88U
 
 ## How to Configure
 
 ### Prerequisites
-You should have your Merlin-enabled ASUS RT-AC68U router configured for your network with Internet access. Since you've found this guide, it's also assumed you have a Cloudflare account managing your own domain, and you've already created a subdomain you will use for dynamic DNS.
+You should have your Merlin-enabled ASUS router configured for your network with Internet access. Since you've found this guide, it's also assumed you have a Cloudflare account managing your own domain, and you've already created a subdomain you will use for dynamic DNS.
 
 ### Configuration Overview
 Configuration of Cloudflare DDNS involves changes through the router web portal as well as changes made through the router shell.
