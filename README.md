@@ -14,6 +14,7 @@ Features include:
 - [@epicylon](https://github.com/epicylon) - Verified works on RT-AC66U
 - [@bengalih](https://github.com/bengalih) - Several contributions toward support for API Tokens, proxying, and other enhancements.
 - [@gumanov](https://github.com/gumanov) - Verified works on RT-AX88U
+- [@clayauld](https://github.com/clayauld) - Verified works on RT-AC87U
 
 ## How to Configure
 
