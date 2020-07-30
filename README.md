@@ -33,7 +33,7 @@ Directions for disabling dynamic DNS and removal of the script and related files
 
 ##### Enable Shell Access and JFFS Partition
 In the router portal, under Administration -> System,
-- Basic Config -> Enable JFFS custom scripts and configs: Yes
+- Persistent JFFS2 partition -> Enable JFFS custom scripts and configs: Yes
 - Service -> Enable SSH: LAN only
 
 Save the configuration. Ensure you are able to SSH into your router using your router portal credentials (or via public key crypto, depending on configuration) before continuing.
@@ -58,7 +58,7 @@ Save the configuration. Ensure you are able to SSH into your router using your r
 13. If Steps 11 and 12 were successful, run `ln -s cloudflare_ddns ddns-start`. This creates a symbolic link with the name expected by the router firmware.
 ##### Enable Custom DDNS
 In the router portal, under WAN -> DDNS,
-- Enable DDNS client: Yes
+- Enable the DDNS client: Yes
 - Server: Custom
 - Host name: `the DNS host name you're using in Cloudflare`
 - HTTPS/SSL Certificate: None
