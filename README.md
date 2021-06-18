@@ -15,6 +15,7 @@ Features include:
 - [@bengalih](https://github.com/bengalih) - Several contributions toward support for API Tokens, proxying, and other enhancements.
 - [@gumanov](https://github.com/gumanov) - Verified works on RT-AX88U
 - [@clayauld](https://github.com/clayauld) - Verified works on RT-AC87U
+- [@ilasoft](https://github.com/ilasoft) - Verified works on RT-AX86U
 
 ## How to Configure
 
