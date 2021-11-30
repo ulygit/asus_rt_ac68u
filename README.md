@@ -23,6 +23,7 @@ Features include:
 - [@clayauld](https://github.com/clayauld) - Verified works on RT-AC87U
 - [@ilasoft](https://github.com/ilasoft) - Verified works on RT-AX86U
 - [@sujitph](https://github.com/sujitph) - Verified works on GT-AX11000
+- [@scenix007](https://github.com/github007) - Upgrade for firmware 386.3, verified works on RT-AX86U
 
 ## How to Configure
 
