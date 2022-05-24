@@ -9,7 +9,7 @@ else
 fi
 
 # *** USER SETTINGS ***
-THROTTLE_SECONDS=300  # terminate prematurely if run too often
+THROTTLE_SECONDS=5  # Limits calls to Cloudflare to minimize abuse
 LOGFILE=$0.log
 LOGFILE_LIMIT_IN_BYTES=$((200*1024))  # default is 200kb
 
