@@ -57,7 +57,7 @@ Save the configuration. Ensure you are able to SSH into your router using your r
 6. Run `chmod 600 .cloudflare`.
 7. Run `./cloudflare_ddns list`.
 8. Step 7 should have resulted in the creation of a log file named `cloudflare_ddns.log`. Open the log file and review the JSON response object, which should be a listing of your Cloudflare DNS records for the zone ID specified in Step 4.
-> Note: If there is an error in the log file or no log file is present, ensure permissions are correct and that the text of the script is copied accurately. Double-check your Cloudflare credentials. If the error is from Cloudflare, you can review the text of the error in the JSON response and look for any error code online.
+> Note: If there is an error in the log file or no log file is present, ensure permissions are correct and that the text of the script is copied accurately. Double-check your Cloudflare credentials. For large Cloudflare configurations, it may be necessary to increase the log file size limit in the script. If the error is from Cloudflare, you can review the text of the error in the JSON response and look for any error code online.
 9. Edit `.cloudflare` with the DNS record information (i.e. ID, name and type) obtained from Step 8. Ensure your text matches exactly.
 10. Run `./cloudflare_ddns 1.1.1.1`.
 11. Review the log file for the result of the last execution. If you see a successful response, verify against the Cloudflare portal. Otherwise, review the errors and correct as necessary.
@@ -82,7 +82,7 @@ Nov 5 6:57 start_ddns: update CUSTOM , wan_unit 0
 Nov 5 6:57 custom_script: Running /jffs/scripts/ddns-start (args: x.x.x.x ) - max timeout = 120s
 Nov 5 6:57 ddns: Completed custom ddns update
 ```
-3. A new log file for the script should have been created in a /tmp folder and it should contain a successful log entry. Find the log file by running `find / -name ddns-start.log 2>&1`.
+3. A new log file should have been created, and it should contain a successful log entry.
 4. The Cloudflare portal should reflect the updated public IP address of your router.
 
 > Note: If any errors occur, review the router log file and the script log file for an indication of the error or manually re-run `./cloudflare_ddns list` and `./cloudflare_ddns 1.1.1.1` to identify and troubleshoot.

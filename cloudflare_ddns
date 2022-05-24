@@ -8,16 +8,22 @@ else
 	( >&2 echo "Missing or unreadable $CONFIG" )
 fi
 
-# script settings
-LOGFILE=$(basename $0).log
+# *** USER SETTINGS ***
 THROTTLE_SECONDS=300  # terminate prematurely if run too often
+LOGFILE=$0.log
+LOGFILE_LIMIT_IN_BYTES=$((200*1024))  # default is 200kb
+
+# *** OTHER SETTINGS ***
+LOGFILE_TEMPFILE=.$LOGFILE.tmp
 CLOUDFLARE_AUTH_HEADERS="X-Auth-Email: $CLOUDFLARE_EMAIL
 X-Auth-Key: $CLOUDFLARE_API_KEY"
-
 # cloudflare prefers token-based auth, so use that if available
 if [ -n $CLOUDFLARE_API_TOKEN ]; then
 	CLOUDFLARE_AUTH_HEADERS="Authorization: Bearer $CLOUDFLARE_API_TOKEN"
 fi
+
+# ensure temp files are deleted even if unexpected exit
+trap "rm -f $LOGFILE_TEMPFILE EXIT
 
 # user input IP address
 NEW_IP=$1
@@ -27,6 +33,12 @@ log_output()
 	timestamp=$(date +"%Y-%m-%d %H:%M:%S")
 	echo "$timestamp	$1	$2"
 } >> $LOGFILE
+
+prune_log()
+{
+	tail -c$LOGFILE_LIMIT_IN_BYTES $LOGFILE > $LOGFILE_TEMPFILE
+	cat $LOGFILE_TEMPFILE > $LOGFILE
+}
 
 list_dns_records()
 {
@@ -118,3 +130,5 @@ if echo $OUTPUT | grep -q '"success"\s*:\s*true'; then
 else
 	$failure "$OUTPUT"
 fi
+
+prune_log
