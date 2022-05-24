@@ -15,6 +15,9 @@ LOGFILE_LIMIT_IN_BYTES=$((200*1024))  # default is 200kb
 
 # *** OTHER SETTINGS ***
 LOGFILE_TEMPFILE=.$LOGFILE.tmp
+FIRMWARE_NOTIFY_CMD=/sbin/ddns_custom_updated
+FIRMWARE_UPDATE_SUCCESS=1
+FIRMWARE_UPDATE_FAILURE=0
 CLOUDFLARE_AUTH_HEADERS="X-Auth-Email: $CLOUDFLARE_EMAIL
 X-Auth-Key: $CLOUDFLARE_API_KEY"
 # cloudflare prefers token-based auth, so use that if available
@@ -75,19 +78,19 @@ update_record()
 
 update_record_onsuccess()
 {
-	/sbin/ddns_custom_updated 1
+	$FIRMWARE_NOTIFY_CMD $FIRMWARE_UPDATE_SUCCESS
 	log_output UPDATE_SUCCESS "$1"
 } 
 
 update_record_onfailure()
 {
-	/sbin/ddns_custom_updated 0
+	$FIRMWARE_NOTIFY_CMD $FIRMWARE_UPDATE_FAILURE
 	log_output UPDATE_FAILED "$1"
 }
 
 update_record_onthrottled()
 {
-	/sbin/ddns_custom_updated 0
+	$FIRMWARE_NOTIFY_CMD $FIRMWARE_UPDATE_FAILURE
 	log_output UPDATE_THROTTLED
 }
 
