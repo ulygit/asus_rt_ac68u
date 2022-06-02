@@ -52,7 +52,7 @@ Save the configuration. Ensure you are able to SSH into your router using your r
 1. Log into your router via SSH, and navigate to `/jffs/scripts`.
 2. Copy the `cloudflare_ddns` and `.cloudflare.example` files to that directory.
 3. Rename `.cloudflare.example` to `.cloudflare`.
-4. Edit `.cloudflare` with your [Cloudflare API token](https://blog.cloudflare.com/api-tokens-general-availability/) and zone ID from your Cloudflare portal. The script also supports the legacy "API Key plus account e-mail" method of authentication, but this method is less secure and appears likely to be eliminated in future.
+4. Edit `.cloudflare` with your [Cloudflare API token](https://developers.cloudflare.com/api/tokens/) and zone ID from your Cloudflare portal. The script also supports the legacy "API Key plus account e-mail" method of authentication, but this method is less secure and appears likely to be eliminated in future.
 5. Run `chmod 700 cloudflare_ddns`.
 6. Run `chmod 600 .cloudflare`.
 7. Run `./cloudflare_ddns list`.
@@ -61,7 +61,7 @@ Save the configuration. Ensure you are able to SSH into your router using your r
 9. Edit `.cloudflare` with the DNS record information (i.e. ID, name and type) obtained from Step 8. Ensure your text matches exactly.
 10. Run `./cloudflare_ddns 1.1.1.1`.
 11. Review the log file for the result of the last execution. If you see a successful response, verify against the Cloudflare portal. Otherwise, review the errors and correct as necessary.
-> Note: You may get a throttled response if you have queried too quickly after Step 7. The script rate-limits to one query every 5 minutes. This is configurable in the `cloudflare_ddns` script or you can simply wait.
+> Note: You may get a throttled response if you have queried too quickly after Step 7. The script rate-limits to one query every 5 seconds. This is configurable in the `cloudflare_ddns` script or you can simply wait.
 12. Ensure rate-limiting is working as expected by re-issuing the command in Step 10 a couple of times in quick succession and verifying that the log file shows frequent invocations are throttled.
 13. If Steps 11 and 12 were successful, run `ln -s cloudflare_ddns ddns-start`. This creates a symbolic link with the name expected by the router firmware.
 ##### Enable Custom DDNS
