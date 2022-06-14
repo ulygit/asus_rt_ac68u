@@ -1,6 +1,6 @@
 #!/bin/sh
 
-_DEBUG="on"
+_DEBUG="off"
 DEBUG_LOGFILE=$0.debug
 debug()
 {
