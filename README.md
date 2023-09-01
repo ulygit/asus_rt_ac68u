@@ -3,7 +3,8 @@
 > Note: Starting with version 384.7 (circa 2018), Asuswrt-Merlin uses In-a-dyn for DDNS updates. The In-a-dyn client adds support for many DDNS services now including Cloudflare. User [@bengalih](https://github.com/bengalih) has reported initial success transitioning to In-a-dyn from this script. New users are encouraged to try that option first as it is likely better supported and includes features lacking from this script. For more information, please see the [introduction to In-a-dyn](https://github.com/RMerl/asuswrt-merlin.ng/wiki/DDNS-services#introduction-to-in-a-dyn) in the asuswrt-merlin project documentation.
 
 The Asuswrt-Merlin custom firmware adds support for custom dynamic DNS providers to various ASUS routers. This is great for Cloudflare users because, although Cloudflare is not one of the built-in providers, we can add support for it. This guide and accompanying script do exactly that. Confirmed works on the following model routers:
-  - GT-AX11000,
+  - GT-AX11000, and
+  - GT-AXE11000,
   - RT-AC3200,
   - RT-AC66U,
   - RT-AC68U,
@@ -29,6 +30,7 @@ Features include:
 - [@sujitph](https://github.com/sujitph) - Verified works on GT-AX11000
 - [@Rapsssito](https://github.com/Rapsssito) - Verified works on RT-AC3200
 - [@vnlebaoduy](https://github.com/vnlebaoduy) - Verified works on RT-AX58U
+- [@Tech1k](https://github.com/Tech1k) - Verified works on GT-AXE11000
 
 ## Known Issues
 - Script fails on firmware running certain, older versions of curl. User [@bengalih](https://github.com/bengalih) identified this bug as affecting curl version 7.54.1, other versions are likely also incompatible with this DDNS update implementation. See https://github.com/ulygit/asus_rt_ac68u/issues/23 for explanation and analysis of the problem and possible workarounds.
