@@ -1,4 +1,4 @@
-# The Cloudlflare credentials (i.e. api token and zone id) can be 
+# The Cloudflare credentials (i.e. api token and zone id) can be 
 # obtained from your Cloudflare account online. The record information
 # (i.e. id, name, type) can be obtained by first specifying the 
 # Cloudflare credentials and zone id here and then running 
