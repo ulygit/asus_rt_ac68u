@@ -9,6 +9,7 @@ The Asuswrt-Merlin custom firmware adds support for custom dynamic DNS providers
   - RT-AC66U,
   - RT-AC68U,
   - RT-AC87U,
+  - RT-AC88U,
   - RT-AX58U,
   - RT-AX86U, and
   - RT-AX88U.
@@ -31,6 +32,7 @@ Features include:
 - [@Rapsssito](https://github.com/Rapsssito) - Verified works on RT-AC3200
 - [@vnlebaoduy](https://github.com/vnlebaoduy) - Verified works on RT-AX58U
 - [@Tech1k](https://github.com/Tech1k) - Verified works on GT-AXE11000
+- [@maagmirror](https://github.com/maagmirror) - Verified works on RT-AC88U
 
 ## Known Issues
 - Script fails on firmware running certain, older versions of curl. User [@bengalih](https://github.com/bengalih) identified this bug as affecting curl version 7.54.1, other versions are likely also incompatible with this DDNS update implementation. See https://github.com/ulygit/asus_rt_ac68u/issues/23 for explanation and analysis of the problem and possible workarounds.
