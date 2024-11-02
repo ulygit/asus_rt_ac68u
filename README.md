@@ -1,6 +1,7 @@
 # Cloudflare Dynamic DNS Update Script for Asuswrt-Merlin (on supported ASUS routers)
 
-> Note: Starting with version 384.7 (circa 2018), Asuswrt-Merlin uses In-a-dyn for DDNS updates. The In-a-dyn client adds support for many DDNS services now including Cloudflare. User [@bengalih](https://github.com/bengalih) has reported initial success transitioning to In-a-dyn from this script. New users are encouraged to try that option first as it is likely better supported and includes features lacking from this script. For more information, please see the [introduction to In-a-dyn](https://github.com/RMerl/asuswrt-merlin.ng/wiki/DDNS-services#introduction-to-in-a-dyn) in the asuswrt-merlin project documentation.
+> [!NOTE]
+Starting with version 384.7 (circa 2018), Asuswrt-Merlin uses In-a-dyn for DDNS updates. The In-a-dyn client adds support for many DDNS services now including Cloudflare. User [@bengalih](https://github.com/bengalih) has reported initial success transitioning to In-a-dyn from this script. New users are encouraged to try that option first as it is likely better supported and includes features lacking from this script. For more information, please see the [introduction to In-a-dyn](https://github.com/RMerl/asuswrt-merlin.ng/wiki/DDNS-services#introduction-to-in-a-dyn) in the asuswrt-merlin project documentation.
 
 The Asuswrt-Merlin custom firmware adds support for custom dynamic DNS providers to various ASUS routers. This is great for Cloudflare users because, although Cloudflare is not one of the built-in providers, we can add support for it. This guide and accompanying script do exactly that. Confirmed works on the following model routers:
   - GT-AX11000, and
